@@ -1,0 +1,87 @@
+{
+    "name": "Sample_git_repo",
+    "guid": "0a816742-29ef-4195-9c00-48423c8a7a8c",
+    "inputPath": "D:\\Snowconvert\\Input",
+    "outputPath": "D:\\Snowconvert\\output",
+    "platform": "SnowConvert",
+    "accesscode": "895909ab-e582-4cce-95cf-0f781959a6b2",
+    "assessmentAccesscode": "",
+    "isDemo": false,
+    "steps": [
+        {
+            "name": "Project Creation",
+            "status": 1,
+            "active": true,
+            "disabled": false,
+            "steps": []
+        },
+        {
+            "name": "Conversion",
+            "status": 1,
+            "active": false,
+            "disabled": false,
+            "steps": [
+                {
+                    "name": "Execution",
+                    "status": 0,
+                    "disabled": true,
+                    "active": false,
+                    "expandOptions": {
+                        "isExpandable": true,
+                        "expand": true
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Conversion Results",
+            "status": 0,
+            "active": false,
+            "disabled": true,
+            "steps": []
+        }
+    ],
+    "conversionSettings": {
+        "sourcePlatform": "teradata",
+        "conversionOptions": {
+            "commentIfMissingDependencies": false,
+            "generateStoredProcedureTags": false,
+            "splitPeriodDataType": false,
+            "disableTopologicalLevelReorder": false,
+            "useCollateForCaseSpecification": false,
+            "encoding": "65001",
+            "sessionMode": "Tera",
+            "customObjectName": "default",
+            "useExistingNameQualification": false,
+            "arrangeOption": {
+                "arrange": false
+            },
+            "characterToApproximateNumber": 10,
+            "defaultTimestampFormat": "YYYY/MM/DD HH:MI:SS",
+            "defaultDateFormat": "YYYY/MM/DD",
+            "defaultTimezoneFormat": "GMT-5",
+            "defaultTimeFormat": "HH:MI:SS",
+            "bteqTargetLanguage": "Python",
+            "pLTargetLanguage": "SnowScript",
+            "targetLag": "TargetLag",
+            "targetLagNumber": "1",
+            "targetLagTime": "days",
+            "warehouse": "UPDATE_DUMMY_WAREHOUSE",
+            "conversionRateMode": "LoC"
+        }
+    },
+    "internalProcessInputPath": "",
+    "internalAssessmentOutputPath": "",
+    "internalConversionOutputPath": "D:\\Snowconvert\\output\\Conversion-4-29-2025T0 6",
+    "customerData": {
+        "company": "Elait",
+        "email": "shajahan.hussain@elait.com"
+    },
+    "conversionProgress": {
+        "isSuccessful": true
+    },
+    "customInputPaths": {
+        "assessment": "",
+        "conversion": ""
+    }
+}
