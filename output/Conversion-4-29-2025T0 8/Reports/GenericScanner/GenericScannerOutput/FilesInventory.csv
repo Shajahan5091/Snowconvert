@@ -1,0 +1,2 @@
+FileName,Extension,Technology,Status,isBinary,Bytes,ContentType,ContentLines,CommentLines,BlankLines
+\create_table.sql,sql,SQL,OK,a,1266,Code,20,6,4

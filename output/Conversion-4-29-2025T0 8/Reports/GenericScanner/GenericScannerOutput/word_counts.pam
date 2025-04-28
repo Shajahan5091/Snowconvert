@@ -1,0 +1,11 @@
+FileId,Keyword,Count
+\create_table.sql,as,1
+\create_table.sql,create table,1
+\create_table.sql,float,5
+\create_table.sql,for,1
+\create_table.sql,integer,6
+\create_table.sql,not null,2
+\create_table.sql,period,1
+\create_table.sql,primary index,1
+\create_table.sql,timestamp,2
+\create_table.sql,varchar,3

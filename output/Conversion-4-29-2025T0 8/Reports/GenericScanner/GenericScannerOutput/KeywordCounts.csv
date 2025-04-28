@@ -1,0 +1,11 @@
+File,Technology,Keyword,Count
+\create_table.sql,SQL,as,1
+\create_table.sql,SQL,create table,1
+\create_table.sql,SQL,float,5
+\create_table.sql,SQL,for,1
+\create_table.sql,SQL,integer,6
+\create_table.sql,SQL,not null,2
+\create_table.sql,SQL,period,1
+\create_table.sql,SQL,primary index,1
+\create_table.sql,SQL,timestamp,2
+\create_table.sql,SQL,varchar,3

@@ -1,0 +1,57 @@
+[29-04-2025 00:10:56] A: Session id: b23afd06-1625-416f-9b97-f784d3875a33
+[29-04-2025 00:10:56] A: Code Processor information: Name :SnowConvert, Version: 1.5.0.0
+[29-04-2025 00:10:56] a: Starting to install license with key that ends with: a6b2
+[29-04-2025 00:10:56] a: License installation result: Success
+[29-04-2025 00:10:56] a: Starting to validate parameters
+[29-04-2025 00:10:56] a: Parameters to validate: 
+	Execution mode: Conversion
+	CommentIfMissingDependencies: false
+	GenerateStoredProcedureTags: false
+	SplitPeriodDataType: false
+	DisableTopologicalLevelReorder: false
+	UseCollateForCaseSpecification: false
+	Encoding: 65001
+	SessionMode: Tera
+	UseExistingNameQualification: false
+	CharacterToApproximateNumber: 10
+	DefaultTimestampFormat: YYYY/MM/DD HH:MI:SS
+	DefaultDateFormat: YYYY/MM/DD
+	DefaultTimezoneFormat: GMT-5
+	DefaultTimeFormat: HH:MI:SS
+	BteqTargetLanguage: Python
+	PLTargetLanguage: SnowScript
+	TargetLag: 1 days
+	Warehouse: UPDATE_DUMMY_WAREHOUSE
+	ConversionRateMode: LoC
+	ProjectName: Sample_git_repo
+[29-04-2025 00:10:56] a: Validation of parameters: Success
+[29-04-2025 00:10:56] A: Getting code descriptor
+[29-04-2025 00:10:56] A: Code descriptor information
+	Units: 26
+	Units type: LOC
+	All file bytes: 1266
+	All found extensions: .sql,.dml,.ddl,.bteq,.btq,.fl,.fload,.ml,.mload,.mld,.tp,.tpump,.tpt
+[29-04-2025 00:10:56] A: Calculating fingerprint
+[29-04-2025 00:10:56] A: Fingerprint information Fingerprint(size=1266,projects=1)
+[29-04-2025 00:10:56] a: Starting to validate active license
+[29-04-2025 00:10:56] a: Active license validation: Success
+[29-04-2025 00:10:56] A: License information
+	License key ends with: a6b2
+	Start date: 2025-04-28
+	Expiration date: 2025-07-28
+	Execution mode: Conversion
+	Unit type: Lines of Code
+	Created by: shajahan.hussain@elait.com
+	Remaining activations: -2
+	Products: SnowConvert
+[29-04-2025 00:11:21] A: Getting license
+[29-04-2025 00:11:21] A: License information
+	Status: Successful
+[29-04-2025 00:11:23] A: Starting the execution of the controller
+[29-04-2025 00:11:24] A: Executing the worker: SnowConvert
+[29-04-2025 00:12:10] A: Finished executing the worker: SnowConvert
+[29-04-2025 00:12:10] A: Executing the worker: GenericScanner
+[29-04-2025 00:12:11] A: Finished executing the worker: GenericScanner
+[29-04-2025 00:12:12] a: Controller execution ended
+[29-04-2025 00:12:12] a: Starting to upload the Assessment results
+[29-04-2025 00:12:15] a: A assessment upload

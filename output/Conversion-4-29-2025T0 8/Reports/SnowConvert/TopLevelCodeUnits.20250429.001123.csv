@@ -1,0 +1,2 @@
+PartitionKey,FileType,Category,CodeUnit,CodeUnitId,FileName,LineNumber,LinesOfCode,EWI Count,FDM Count,PRF Count,HighestEWISeverity,UDFsUsed,EWI,FDM,PRF,ConversionStatus,LoCConversionPercentage,Deployment Order
+b23afd06-1625-416f-9b97-f784d3875a33,SQL,TABLE,CREATE TABLE,weather_temporal,create_table.sql,1,26,1,0,0,Low,N/A,SSC-EWI-TD0009,N/A,N/A,Partial,96.15%,0

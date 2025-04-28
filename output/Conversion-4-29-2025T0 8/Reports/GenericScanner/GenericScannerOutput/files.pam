@@ -1,0 +1,2 @@
+Path,Technology,FileKind,BinaryKind,Bytes,SupportedStatus
+\create_table.sql,SQL,SourceCodeFile,NotBinary,1266,DoesNotApply,DoesNotApply

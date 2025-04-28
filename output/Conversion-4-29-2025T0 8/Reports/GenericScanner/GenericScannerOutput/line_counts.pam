@@ -1,0 +1,4 @@
+FileId,LineKind,Count
+\create_table.sql,Code,20
+\create_table.sql,Comment,6
+\create_table.sql,Blank,4

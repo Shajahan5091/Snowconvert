@@ -1,0 +1,2 @@
+SessionID,Severity,Code,Name,Description,ParentFile,Line,Column,Code Unit Database,Code Unit Schema,Code Unit Package,Code Unit Name,Code Unit Id,Code Unit,Code Unit Size
+b23afd06-1625-416f-9b97-f784d3875a33,Low,SSC-EWI-TD0009,TEMPORAL column not supported,TEMPORAL COLUMN NOT SUPPORTED,create_table.sql,28,5,N/A,N/A,N/A,weather_temporal,weather_temporal,CREATE TABLE,XS
