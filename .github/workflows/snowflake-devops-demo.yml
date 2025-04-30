@@ -27,7 +27,7 @@ jobs:
 
       - name: Run schemachange
         env:
-          SF_ACCOUNT: 'A9752755683171-ELAIT_PARTNER'
+          SF_ACCOUNT: 'A9752755683171-ELAIT_PARTNES'
           SF_USERNAME: 'SHAJAHAN'
           SF_ROLE: 'PUBLIC'
           SF_WAREHOUSE: 'COMPUTE_WH'
