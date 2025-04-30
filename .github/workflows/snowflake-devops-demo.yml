@@ -27,7 +27,7 @@ jobs:
 
       - name: Run schemachange
         env:
-          SF_ACCOUNT: 'EVCXRHS-ON77664'
+          SF_ACCOUNT: "EVCXRHS-ON77664"
           SF_USERNAME: 'DEMO_USER'
           SF_ROLE: 'ACCOUNTADMIN'
           SF_WAREHOUSE: 'COMPUTE_WH'
@@ -38,6 +38,8 @@ jobs:
           python --version
           echo "Step 1: Installing schemachange"
           pip install schemachange
+          echo "$SF_ACCOUNT"
+          echo "$SF_USERNAME"
           
           echo "Step 2: Running schemachange"
           schemachange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
