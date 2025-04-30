@@ -27,7 +27,7 @@ jobs:
 
       - name: Run schemachange
         env:
-          SF_ACCOUNT: "EVCXRHS-ON77664"
+          SF_ACCOUNT: "EVCXRHS-ON77664.JX54145.AWS"
           SF_USERNAME: 'DEMO_USER'
           SF_ROLE: 'ACCOUNTADMIN'
           SF_WAREHOUSE: 'COMPUTE_WH'
