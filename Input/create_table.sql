@@ -8,7 +8,7 @@
 
 ------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE weather_temporal (
+CREATE TABLE SNOWCONVERT.weather_temporal (
     begin_dt      TIMESTAMP(6) NOT NULL,
     end_dt        TIMESTAMP(6) NOT NULL,
     temp          FLOAT,

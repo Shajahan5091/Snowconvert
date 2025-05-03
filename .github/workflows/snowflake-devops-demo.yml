@@ -28,11 +28,11 @@ jobs:
       - name: Run schemachange
         env:
           SF_ACCOUNT: 'EVCXRHS-JX54145'
-          SF_USERNAME: 'DEMO_USER'
-          SF_ROLE: 'PUBLIC'
+          SF_USERNAME: 'SHAJAHAN'
+          SF_ROLE: 'DATADEVELOPER'
           SF_WAREHOUSE: 'COMPUTE_WH'
-          SF_DATABASE: 'DEMO_DB'
-          SNOWFLAKE_PASSWORD: 'Demo_user@1234'
+          SF_DATABASE: 'DEV'
+          SNOWFLAKE_PASSWORD: 'Shajahan@2002'
         run: |
           echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
           python --version
