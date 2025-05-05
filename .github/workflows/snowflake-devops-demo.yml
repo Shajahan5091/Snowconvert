@@ -39,7 +39,7 @@ jobs:
           # Create the directory and write to connections.toml
           mkdir -p ~/.schemachange
 
-          echo "[default]" > ~/.schemachange/connections.toml
+          echo "[]" > ~/.schemachange/connections.toml
           echo "account = \"${SF_ACCOUNT}\"" >> ~/.schemachange/connections.toml
           echo "user = \"${SF_USERNAME}\"" >> ~/.schemachange/connections.toml
           echo "private_key_path = \"private_key.p8\"" >> ~/.schemachange/connections.toml
