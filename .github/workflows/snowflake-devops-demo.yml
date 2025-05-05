@@ -5,15 +5,15 @@ on:
     branches:
       - main
     paths:
-      - 'output/Conversion-4-29-2025T0 8/Output/SnowConvert/**'
+      - 'output/Conversion-4-29-2025T08/Output/SnowConvert/**'
   workflow_dispatch:
 
 jobs:
-  deploy-snowflake-changes-job:
+  deploy-snowflake-changes:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Python
@@ -24,46 +24,39 @@ jobs:
       - name: Install schemachange
         run: pip install schemachange
 
-      - name: Decode private key and create connections.toml
+      - name: Decode private key
+        env:
+          SF_PRIVATE_KEY: ${{ secrets.SF_PRIVATE_KEY }}
+        run: |
+          echo "$SF_PRIVATE_KEY" | base64 --decode > private_key.p8
+
+      - name: Create schemachange config
         env:
           SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
           SF_USERNAME: ${{ secrets.SF_USERNAME }}
-          SF_PRIVATE_KEY: ${{ secrets.SF_PRIVATE_KEY }}
           SF_ROLE: ${{ secrets.SF_ROLE }}
           SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
           SF_DATABASE: ${{ secrets.SF_DATABASE }}
         run: |
-          echo "$SF_PRIVATE_KEY" | base64 --decode > private_key.p8
-
           mkdir -p ~/.schemachange
 
-          # Create the connections.toml file
-          echo "[default]" > ~/.schemachange/connections.toml
-          echo "account = \"${SF_ACCOUNT}\"" >> ~/.schemachange/connections.toml
-          echo "user = \"${SF_USERNAME}\"" >> ~/.schemachange/connections.toml
-          echo "private_key_path = \"private_key.p8\"" >> ~/.schemachange/connections.toml
-          echo "role = \"${SF_ROLE}\"" >> ~/.schemachange/connections.toml
-          echo "warehouse = \"${SF_WAREHOUSE}\"" >> ~/.schemachange/connections.toml
-          echo "database = \"${SF_DATABASE}\"" >> ~/.schemachange/connections.toml
-          echo "schema = \"SCHEMACHANGE\"" >> ~/.schemachange/connections.toml
-          echo "authenticator = \"snowflake\"" >> ~/.schemachange/connections.toml
+          cat <<EOF > ~/.schemachange/connections.toml
+          [connections]
+            [connections.default]
+            account = "${SF_ACCOUNT}"
+            user = "${SF_USERNAME}"
+            private_key_path = "private_key.p8"
+            role = "${SF_ROLE}"
+            warehouse = "${SF_WAREHOUSE}"
+            database = "${SF_DATABASE}"
+            schema = "SCHEMACHANGE"
+          EOF
 
-      - name: Debug connections.toml content
+      - name: Run schemachange
         run: |
-          echo "===== ~/.schemachange/connections.toml ====="
-          cat ~/.schemachange/connections.toml
-
-      - name: Check if the file is readable
-        run: |
-          ls -la ~/.schemachange
-          cat ~/.schemachange/connections.toml
-
-      - name: Run schemachange with config-folder
-        run: |
-          echo "Running schemachange with config folder..."
           schemachange deploy \
             --config-folder ~/.schemachange \
             --connection-name default \
-            -f $GITHUB_WORKSPACE/migrations \
+            -f $GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert \
             --change-history-table CHANGE_HISTORY \
             --create-change-history-table
