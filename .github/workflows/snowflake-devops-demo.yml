@@ -27,7 +27,7 @@ jobs:
  
       - name: Run schemachange
         env:
-          SF_ACCOUNT: 'EVCXRHS-JX54145'
+          SF_ACCOUNT: 'A9752755683171-ELAIT_PARTNER'
           SF_USERNAME: 'SVA_ELAIT'
           SF_ROLE: 'DATADEVELOPER'
           SF_WAREHOUSE: 'COMPUTE_WH'
@@ -41,4 +41,4 @@ jobs:
           echo "$SF_ACCOUNT"
           echo "$SF_USERNAME"
           echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
+          schemachange -f $GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert \ -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
