@@ -25,6 +25,10 @@ jobs:
         with:
           python-version: 3.8.x
 
+      - name: Install dependencies
+        run: |
+          pip install schemachange
+
       - name: Run schemachange with key-pair
         env:
           SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
