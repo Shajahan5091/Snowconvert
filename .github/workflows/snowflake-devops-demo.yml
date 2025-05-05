@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'output/Conversion-4-29-2025T08/Output/SnowConvert/**'
+      - 'output/Conversion-4-29-2025T0 8/Output/SnowConvert/**'
   workflow_dispatch:
 
 jobs:
