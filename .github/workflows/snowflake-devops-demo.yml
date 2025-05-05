@@ -47,8 +47,14 @@ jobs:
           echo "schema = \"SCHEMACHANGE\"" >> ~/.schemachange/connections.toml
           echo "authenticator = \"snowflake\"" >> ~/.schemachange/connections.toml
 
+      - name: Debug connections.toml
+        run: |
+          echo "======= ~/.schemachange/connections.toml ======="
+          cat ~/.schemachange/connections.toml
+
       - name: Run schemachange
         run: |
           schemachange deploy -f $GITHUB_WORKSPACE/migrations \
+            --connection-name default \
             --change-history-table CHANGE_HISTORY \
             --create-change-history-table
