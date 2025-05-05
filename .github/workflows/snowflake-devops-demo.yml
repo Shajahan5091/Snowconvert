@@ -25,21 +25,22 @@ jobs:
         with:
           python-version: 3.8.x
 
-      - name: Run schemachange
+      - name: Run schemachange with key-pair
         env:
-          SF_ACCOUNT: 'EVCXRHS-JX54145'
-          SF_USERNAME: 'SHAJAHAN'
-          SF_ROLE: 'DATADEVELOPER'
-          SF_WAREHOUSE: 'COMPUTE_WH'
-          SF_DATABASE: 'DEV'
-          SNOWFLAKE_PASSWORD: 'Shajahan@2002'
+          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
+          SF_USERNAME: ${{ secrets.SF_USERNAME }}
+          SF_PRIVATE_KEY: ${{ secrets.SF_PRIVATE_KEY }}
+          SF_ROLE: ${{ secrets.SF_ROLE }}
+          SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
+          SF_DATABASE: ${{ secrets.SF_DATABASE }}
         run: |
-          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-          python --version
-          echo "Step 1: Installing schemachange"
-          pip install schemachange
-          echo "$SF_ACCOUNT"
-          echo "$SF_USERNAME"
-          
-          echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE/migrations -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
+          echo "$SF_PRIVATE_KEY" | base64 --decode > private_key.p8
+          schemachange -f $GITHUB_WORKSPACE/migrations \
+            -a $SF_ACCOUNT \
+            -u $SF_USERNAME \
+            --private-key-path private_key.p8 \
+            -r $SF_ROLE \
+            -w $SF_WAREHOUSE \
+            -d $SF_DATABASE \
+            -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY \
+            --create-change-history-table
