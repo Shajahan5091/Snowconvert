@@ -43,6 +43,11 @@ jobs:
           echo "Listing files in $GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert:"
           ls -alh "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert"
 
+      - name: Remove BOM from SQL files
+        run: |
+          find "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" -name "*.sql" -exec sed -i '1s/^\xEF\xBB\xBF//' {} \;
+
+
       - name: Run schemachange
         run: |
           schemachange deploy \
