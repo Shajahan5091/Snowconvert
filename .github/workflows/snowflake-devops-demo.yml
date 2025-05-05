@@ -54,7 +54,9 @@ jobs:
 
       - name: Run schemachange
         run: |
-          schemachange deploy -f $GITHUB_WORKSPACE/migrations \
+          schemachange deploy \
+            --config-folder ~/.schemachange \
             --connection-name default \
+            -f $GITHUB_WORKSPACE/migrations \
             --change-history-table CHANGE_HISTORY \
             --create-change-history-table
