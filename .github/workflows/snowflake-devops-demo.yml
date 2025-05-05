@@ -28,15 +28,15 @@ jobs:
         run: |
           mkdir -p ~/.snowflake
           cat <<EOF > ~/.snowflake/connections.toml
-[default]
-account = "A9752755683171-ELAIT_PARTNER"
-user = "SVA_ELAIT"
-password = "Abcd@123456789"
-role = "DATADEVELOPER"
-warehouse = "COMPUTE_WH"
-database = "DEV"
-schema = "SCHEMACHANGE"
-EOF
+          [default]
+          account = "A9752755683171-ELAIT_PARTNER"
+          user = "SVA_ELAIT"
+          password = "Abcd@123456789"
+          role = "DATADEVELOPER"
+          warehouse = "COMPUTE_WH"
+          database = "DEV"
+          schema = "SCHEMACHANGE"
+          EOF
 
       - name: Run schemachange
         run: |
