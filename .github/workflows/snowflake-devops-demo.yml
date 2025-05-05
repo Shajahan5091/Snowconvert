@@ -24,34 +24,20 @@ jobs:
       - name: Install schemachange
         run: pip install schemachange
 
-      - name: Create schemachange config
-        env:
-          SF_ACCOUNT: ${{ secrets.SF_ACCOUNT }}
-          SF_USERNAME: ${{ secrets.SF_USERNAME }}
-          SF_PASSWORD: ${{ secrets.SF_PASSWORD }}
-          SF_ROLE: ${{ secrets.SF_ROLE }}
-          SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
-          SF_DATABASE: ${{ secrets.SF_DATABASE }}
-        run: |
-          mkdir -p ~/.schemachange
-
-          cat <<EOF > ~/.schemachange/connections.toml
-          [connections]
-            [connections.default]
-            account = "${SF_ACCOUNT}"
-            user = "${SF_USERNAME}"
-            password = "${SF_PASSWORD}"
-            role = "${SF_ROLE}"
-            warehouse = "${SF_WAREHOUSE}"
-            database = "${SF_DATABASE}"
-            schema = "SCHEMACHANGE"
-          EOF
-
       - name: Run schemachange
+        env:
+          SF_ACCOUNT: 'A9752755683171-ELAIT_PARTNER'
+          SF_USERNAME: 'SVA_ELAIT'
+          SF_ROLE: 'DATADEVELOPER'
+          SF_WAREHOUSE: 'COMPUTE_WH'
+          SF_DATABASE: 'DEV'
+          SNOWFLAKE_PASSWORD: 'Abcd@123456789'
         run: |
-          schemachange deploy \
-            --config-folder ~/.schemachange \
-            --connection-name default \
-            -f $GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert \
-            --change-history-table CHANGE_HISTORY \
-            --create-change-history-table
+          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+          python --version
+          echo "Step 1: Installing schemachange"
+          pip install schemachange
+          echo "$SF_ACCOUNT"
+          echo "$SF_USERNAME"
+          echo "Step 2: Running schemachange"
+          schemachange -f $GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert \ -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
