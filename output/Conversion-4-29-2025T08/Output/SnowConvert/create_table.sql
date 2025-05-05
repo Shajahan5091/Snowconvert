@@ -23,9 +23,7 @@ CREATE OR REPLACE TABLE SNOWCONVERT.weather_temporal (
     weather_id INTEGER,
     weather_main VARCHAR(50),
     weather_desc VARCHAR(50),
-    weather_icon VARCHAR(50),
-    !!!RESOLVE EWI!!! /*** SSC-EWI-TD0009 - TEMPORAL COLUMN NOT SUPPORTED ***/!!!
-       PERIOD FOR Weather_Duration(begin_dt,end_dt) AS VALIDTIME
+    weather_icon VARCHAR(50)
    )
 COMMENT = '{ "origin": "sf_sc", "name": "snowconvert", "version": {  "major": 1,  "minor": 5,  "patch": "0.0" }, "attributes": {  "component": "teradata",  "convertedOn": "04-29-2025",  "domain": "elait" }}'
 ;
