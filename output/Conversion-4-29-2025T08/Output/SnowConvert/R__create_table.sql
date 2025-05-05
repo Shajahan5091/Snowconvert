@@ -13,6 +13,5 @@
     clouds INTEGER,
     weather_id INTEGER,
     weather_main VARCHAR(50),
-    weather_desc VARCHAR(50),
-    weather_icon VARCHAR(50)
+    weather_desc VARCHAR(50)
    );
