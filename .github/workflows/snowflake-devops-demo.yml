@@ -24,24 +24,24 @@ jobs:
       - name: Install schemachange
         run: pip install schemachange
 
-      - name: Configure schemachange connection
+      - name: Create schemachange connection config
         run: |
-          mkdir -p ~/.schemachange
-          cat <<EOF > ~/.schemachange/connections.toml
-          [connections.default]
-          account = "A9752755683171-ELAIT_PARTNER"
-          user = "SVA_ELAIT"
-          password = "Abcd@123456789"
-          role = "DATADEVELOPER"
-          warehouse = "COMPUTE_WH"
-          database = "DEV"
-          schema = "SCHEMACHANGE"
-          EOF
+          mkdir -p ~/.snowflake
+          cat <<EOF > ~/.snowflake/connections.toml
+[default]
+account = "A9752755683171-ELAIT_PARTNER"
+user = "SVA_ELAIT"
+password = "Abcd@123456789"
+role = "DATADEVELOPER"
+warehouse = "COMPUTE_WH"
+database = "DEV"
+schema = "SCHEMACHANGE"
+EOF
 
       - name: Run schemachange
         run: |
           schemachange deploy \
-            --config-folder ~/.schemachange \
+            --config-folder ~/.snowflake \
             --connection-name default \
             -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" \
             --change-history-table CHANGE_HISTORY \
