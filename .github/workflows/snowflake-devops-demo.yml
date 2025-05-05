@@ -33,13 +33,12 @@ jobs:
           SF_WAREHOUSE: ${{ secrets.SF_WAREHOUSE }}
           SF_DATABASE: ${{ secrets.SF_DATABASE }}
         run: |
-          # Decode private key and write to file
           echo "$SF_PRIVATE_KEY" | base64 --decode > private_key.p8
 
-          # Create the directory and write to connections.toml
           mkdir -p ~/.schemachange
 
-          echo "[]" > ~/.schemachange/connections.toml
+          # Create the connections.toml file
+          echo "[default]" > ~/.schemachange/connections.toml
           echo "account = \"${SF_ACCOUNT}\"" >> ~/.schemachange/connections.toml
           echo "user = \"${SF_USERNAME}\"" >> ~/.schemachange/connections.toml
           echo "private_key_path = \"private_key.p8\"" >> ~/.schemachange/connections.toml
@@ -49,14 +48,19 @@ jobs:
           echo "schema = \"SCHEMACHANGE\"" >> ~/.schemachange/connections.toml
           echo "authenticator = \"snowflake\"" >> ~/.schemachange/connections.toml
 
-      - name: Verify the connections.toml file
+      - name: Debug connections.toml content
         run: |
           echo "===== ~/.schemachange/connections.toml ====="
           cat ~/.schemachange/connections.toml
 
-      - name: Run schemachange
+      - name: Check if the file is readable
         run: |
-          # Explicitly define config folder location
+          ls -la ~/.schemachange
+          cat ~/.schemachange/connections.toml
+
+      - name: Run schemachange with config-folder
+        run: |
+          echo "Running schemachange with config folder..."
           schemachange deploy \
             --config-folder ~/.schemachange \
             --connection-name default \
