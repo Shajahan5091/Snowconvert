@@ -44,6 +44,6 @@ jobs:
           schemachange deploy \
             --config-folder ~/.schemachange \
             --connection-name default \
-            -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert" \
+            -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert \
             --change-history-table CHANGE_HISTORY \
             --create-change-history-table
