@@ -24,20 +24,26 @@ jobs:
       - name: Install schemachange
         run: pip install schemachange
 
-      - name: Run schemachange
-        env:
-          SF_ACCOUNT: 'A9752755683171-ELAIT_PARTNER'
-          SF_USERNAME: 'SVA_ELAIT'
-          SF_ROLE: 'DATADEVELOPER'
-          SF_WAREHOUSE: 'COMPUTE_WH'
-          SF_DATABASE: 'DEV'
-          SNOWFLAKE_PASSWORD: 'Abcd@123456789'
+      - name: Create schemachange config file
         run: |
-          echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-          python --version
-          echo "Step 1: Installing schemachange"
-          pip install schemachange
-          echo "$SF_ACCOUNT"
-          echo "$SF_USERNAME"
-          echo "Step 2: Running schemachange"
-          schemachange -f $GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert \ -a $SF_ACCOUNT -u $SF_USERNAME -r $SF_ROLE -w $SF_WAREHOUSE -d $SF_DATABASE -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY --create-change-history-table
+          mkdir -p ~/.schemachange
+
+          echo '[connections]' > ~/.schemachange/connections.toml
+          echo '[connections."default"]' >> ~/.schemachange/connections.toml
+          echo "account = \"A9752755683171-ELAIT_PARTNER\"" >> ~/.schemachange/connections.toml
+          echo "user = \"SVA_ELAIT\"" >> ~/.schemachange/connections.toml
+          echo "password = \"Abcd@123456789\"" >> ~/.schemachange/connections.toml
+          echo "role = \"DATADEVELOPER\"" >> ~/.schemachange/connections.toml
+          echo "warehouse = \"COMPUTE_WH\"" >> ~/.schemachange/connections.toml
+          echo "database = \"DEV\"" >> ~/.schemachange/connections.toml
+          echo "schema = \"SCHEMACHANGE\"" >> ~/.schemachange/connections.toml
+          cat <<EOF > ~/.schemachange/connections.toml
+
+      - name: Run schemachange
+        run: |
+          schemachange deploy \
+            --config-folder ~/.schemachange \
+            --connection-name default \
+            -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T0\ 8/Output/SnowConvert" \
+            --change-history-table CHANGE_HISTORY \
+            --create-change-history-table
