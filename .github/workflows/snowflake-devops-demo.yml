@@ -38,11 +38,16 @@ jobs:
           schema = "SNOWCONVERT"
           EOF
 
+      - name: Debug List files in the target folder
+        run: |
+          echo "Listing files in $GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert:"
+          ls -alh "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert"
+
       - name: Run schemachange
         run: |
+          -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" \
           schemachange deploy \
             --config-folder ~/.snowflake \
             --connection-name default \
-            -f "$GITHUB_WORKSPACE/output/Conversion-4-29-2025T08/Output/SnowConvert" \
             --change-history-table DEV.SNOWCONVERT.CHANGE_HISTORY \
             --create-change-history-table
