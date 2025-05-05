@@ -39,12 +39,23 @@ jobs:
           SF_DATABASE: ${{ secrets.SF_DATABASE }}
         run: |
           echo "$SF_PRIVATE_KEY" | base64 --decode > private_key.p8
-          schemachange -f $GITHUB_WORKSPACE/migrations \
-            -a $SF_ACCOUNT \
-            -u $SF_USERNAME \
-            --private-key-path private_key.p8 \
-            -r $SF_ROLE \
-            -w $SF_WAREHOUSE \
-            -d $SF_DATABASE \
-            -c $SF_DATABASE.SCHEMACHANGE.CHANGE_HISTORY \
+      
+          mkdir -p ~/.schemachange
+          cat <<EOF > ~/.schemachange/connections.toml
+          [default]
+          account = "$SF_ACCOUNT"
+          user = "$SF_USERNAME"
+          private_key_path = "private_key.p8"
+          role = "$SF_ROLE"
+          warehouse = "$SF_WAREHOUSE"
+          database = "$SF_DATABASE"
+          schema = "SCHEMACHANGE"
+          authenticator = "snowflake"
+          EOF
+      
+      - name: Run schemachange
+        run: |
+          schemachange deploy -f $GITHUB_WORKSPACE/migrations \
+            --change-history-table CHANGE_HISTORY \
             --create-change-history-table
+
