@@ -35,7 +35,7 @@ jobs:
           role = "DATADEVELOPER"
           warehouse = "COMPUTE_WH"
           database = "DEV"
-          schema = "SCHEMACHANGE"
+          schema = "SNOWCONVERT"
           EOF
 
       - name: Run schemachange
