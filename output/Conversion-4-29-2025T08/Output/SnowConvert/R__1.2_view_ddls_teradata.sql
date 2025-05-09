@@ -12,3 +12,8 @@ FROM
     DEV.SNOWCONVERT.weather
 ;
 
+CREATE OR REPLACE VIEW DEV.SNOWCONVERT.demo_view
+AS
+SELECT  
+    1 as ID 
+;
