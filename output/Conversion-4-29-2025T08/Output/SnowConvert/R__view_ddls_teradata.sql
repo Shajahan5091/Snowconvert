@@ -2,7 +2,6 @@
 COMMENT = '{ "origin": "sf_sc", "name": "snowconvert", "version": {  "major": 1,  "minor": 5,  "patch": "0.0" }, "attributes": {  "component": "teradata",  "convertedOn": "05-08-2025",  "domain": "elait" }}'
 AS
 SELECT
-    PUBLIC.TRUNC_UDF(dt, 'Month') AS dt,
     ROUND(AVG((temp - 273.15) * 9/5 + 32) ,0) AS AveTemp,
     SUM(CASE
         WHEN UPPER(RTRIM(weather_main)) in (UPPER(RTRIM('Rain')), UPPER(RTRIM('Mist')))
