@@ -10,5 +10,5 @@ SELECT
     END) AS Precip_hours
 FROM
     DEV.SNOWCONVERT.weather
-GROUP BY 1;
+;
 
